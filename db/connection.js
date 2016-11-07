@@ -1,19 +1,13 @@
-var mongoose  = require("mongoose");
+var mongoose = require('mongoose')
 
-var CandidateSchema = new mongoose.Schema(
-  {
-    name: String,
-    year: Number,
-    screen_name:  String,
-    photo_url:    String
-  }
-);
+var CandidateSchema = mongoose.Schema({
+  name: String,
+  year: Number,
+})
 
-mongoose.model("Candidate", CandidateSchema);
-if(process.env.NODE_ENV == "production"){
-  mongoose.connect(process.env.MONGOLAB_URL);
-}else{
-  mongoose.connect("mongodb://localhost/whenpresident");
-}
+mongoose.model("Candidate", CandidateSchema)
+mongoose.Promise = global.Promise
 
-module.exports = mongoose;
+mongoose.connect("mongodb://localhost/whenpresident")
+
+module.exports = mongoose

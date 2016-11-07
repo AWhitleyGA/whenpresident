@@ -1,10 +1,11 @@
-var mongoose  = require("./connection");
-var seedData  = require("./seeds");
+var mongoose = require('./connection.js')
+var seedData = require('./seeds.json')
 
-var Candidate = mongoose.model("Candidate");
+var Candidate = mongoose.model('Candidate')
 
-Candidate.remove({}).then(function(){
-  Candidate.collection.insert(seedData).then(function(){
-    process.exit();
-  });
-});
+Candidate.remove({}).then(() => {
+  Candidate.collection.insert(seedData)
+    .then(() => process.exit())
+}).catch((error) => {
+  console.log(error)
+})
